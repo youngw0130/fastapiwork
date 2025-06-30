@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>HowLive 지역 평가</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/script.js"></script>
+</head>
+<body>
+    <h1>지역별 부동산 평가</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>지역명</th>
+                <th>도시</th>
+                <th>구</th>
+                <th>주택 가격</th>
+                <th>교통</th>
+                <th>안전</th>
+                <th>환경</th>
+                <th>총점</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for region in regions %}
+            <tr>
+                <td><a href="/regions/{{ region.id }}">{{ region.name }}</a></td>
+                <td>{{ region.city }}</td>
+                <td>{{ region.gu }}</td>
+                <td>{{ region.housing_price }}</td>
+                <td>{{ region.transport_score }}</td>
+                <td>{{ region.safety_score }}</td>
+                <td>{{ region.environment_score }}</td>
+                <td>{{ region.score }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,28 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: howlive-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: howlive
+      MYSQL_USER: user
+      MYSQL_PASSWORD: youngw0130!
+    ports:
+      - "3304:3304"
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: howlive-app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    command: >
+      bash -c "uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+
+volumes:
+  dbdata:
