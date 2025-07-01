@@ -9,13 +9,13 @@ class RegionBase(BaseModel):
     transport_score: float
     safety_score: float
     environment_score: float
+    score: float
 
 class RegionCreate(RegionBase):
     pass
 
 class Region(RegionBase):
     id: int
-    score: Optional[float] = None
 
     class Config:
         from_attributes = True

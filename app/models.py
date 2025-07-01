@@ -5,9 +5,9 @@ class Region(Base):
     __tablename__ = "regions"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, index=True)
-    city = Column(String, index=True)
-    gu = Column(String, index=True)
+    name = Column(String)
+    city = Column(String)
+    gu = Column(String)
     housing_price = Column(Integer)
     transport_score = Column(Float)
     safety_score = Column(Float)

@@ -1,28 +1,35 @@
+version: '3.9'
+
 services:
   db:
-    image: mysql:8.0
+    image: mysql:8
     container_name: howlive-db
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: youngw0130!
       MYSQL_DATABASE: howlive
-      MYSQL_USER: user
-      MYSQL_PASSWORD: youngw0130!
     ports:
-      - "3304:3304"
+      - "3308:3306
     volumes:
-      - dbdata:/var/lib/mysql
+      - howlive_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
 
   app:
     build: .
     container_name: howlive-app
     ports:
       - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env
     volumes:
       - .:/app
-    depends_on:
-      - db
-    command: >
-      bash -c "uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
 
 volumes:
-  dbdata:
+  howlive_data:

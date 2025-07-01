@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ region.name }} 상세 정보</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>{{ region.name }} 상세 정보</h1>
+    <table>
+        <tr><th>도시</th><td>{{ region.city }}</td></tr>
+        <tr><th>구</th><td>{{ region.gu }}</td></tr>
+        <tr><th>주택 가격</th><td>{{ region.housing_price }}</td></tr>
+        <tr><th>교통 점수</th><td>{{ region.transport_score }}</td></tr>
+        <tr><th>안전 점수</th><td>{{ region.safety_score }}</td></tr>
+        <tr><th>환경 점수</th><td>{{ region.environment_score }}</td></tr>
+        <tr><th>총점</th><td>{{ region.score }}</td></tr>
+    </table>
+    <a href="/">목록으로</a>
+    <h2>평점 수정</h2>
+    <form id="editForm">
+        <input type="text" name="name" value="{{ region.name }}" required />
+        <input type="text" name="city" value="{{ region.city }}" required />
+        <input type="text" name="gu" value="{{ region.gu }}" required />
+        <input type="number" name="housing_price" value="{{ region.housing_price }}" required />
+        <input type="number" step="0.01" name="transport_score" value="{{ region.transport_score }}" required />
+        <input type="number" step="0.01" name="safety_score" value="{{ region.safety_score }}" required />
+        <input type="number" step="0.01" name="environment_score" value="{{ region.environment_score }}" required />
+        <input type="number" step="0.01" name="score" value="{{ region.score }}" required />
+        <button type="submit">수정</button>
+        <button type="button" id="deleteBtn">삭제</button>
+    </form>
+</body>
+</html> 

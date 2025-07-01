@@ -6,3 +6,5 @@ databases
 aiofiles
 python-multipart
 httpx
+pymysql
+cryptography
